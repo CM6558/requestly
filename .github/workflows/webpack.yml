@@ -27,7 +27,7 @@ jobs:
         cd ./browser-extension/mv3
         npm install
         BROWSER=chrome ENV=local npm run config
-        npm run build
+        npm run build:current
 
     # === 新增以下步骤：上传构建结果 ===
     - name: Upload Build Artifact
