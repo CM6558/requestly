@@ -36,6 +36,6 @@ jobs:
         # 自定义下载时的压缩包名称，这里加上了 Node 版本号防冲突
         name: webpack-build-node-${{ matrix.node-version }}
         # 填入你 Webpack 实际打包输出的文件夹路径（常见如 dist、build、out 等）
-        path: dist/
+        path: ./browser-extension/mv3/dist/
         # 可选：设置保留天数（默认 90 天）
         retention-days: 5
