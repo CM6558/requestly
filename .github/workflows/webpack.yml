@@ -26,7 +26,7 @@ jobs:
       run: |
         cd ./browser-extension/mv3
         npm install
-        BROWSER=chrome ENV=local 
+        BROWSER=chrome ENV=local npm run config
         npm run build
 
     # === 新增以下步骤：上传构建结果 ===
