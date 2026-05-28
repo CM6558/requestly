@@ -24,6 +24,7 @@ jobs:
 
     - name: Build
       run: |
+        cd ./browser-extension/mv3
         npm install
         BROWSER=chrome ENV=local 
         npm run build
