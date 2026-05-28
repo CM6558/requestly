@@ -1,0 +1,40 @@
+name: NodeJS with Webpack
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Build
+      run: |
+        npm install
+        BROWSER=chrome ENV=local npm run config
+        npm run build
+
+    # === 新增以下步骤：上传构建结果 ===
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        # 自定义下载时的压缩包名称，这里加上了 Node 版本号防冲突
+        name: webpack-build-node-${{ matrix.node-version }}
+        # 填入你 Webpack 实际打包输出的文件夹路径（常见如 dist、build、out 等）
+        path: dist/
+        # 可选：设置保留天数（默认 90 天）
+        retention-days: 5
